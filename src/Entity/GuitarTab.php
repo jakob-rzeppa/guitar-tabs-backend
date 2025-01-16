@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\GuitarTabsRepository;
+use App\Repository\GuitarTabRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GuitarTabsRepository::class)]
-class GuitarTabs
+#[ORM\Entity(repositoryClass: GuitarTabRepository::class)]
+class GuitarTab
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,6 +25,9 @@ class GuitarTabs
 
     #[ORM\Column]
     private ?\DateTimeImmutable $uploaded_at = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {
@@ -75,6 +78,18 @@ class GuitarTabs
     public function setUploadedAt(\DateTimeImmutable $uploaded_at): static
     {
         $this->uploaded_at = $uploaded_at;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }

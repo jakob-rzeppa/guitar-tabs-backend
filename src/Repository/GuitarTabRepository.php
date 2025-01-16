@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\GuitarTabs;
+use App\Entity\GuitarTab;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<GuitarTabs>
+ * @extends ServiceEntityRepository<GuitarTab>
  */
-class GuitarTabsRepository extends ServiceEntityRepository
+class GuitarTabRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GuitarTabs::class);
+        parent::__construct($registry, GuitarTab::class);
     }
 
     //    /**
-    //     * @return GuitarTabs[] Returns an array of GuitarTabs objects
+    //     * @return GuitarTab[] Returns an array of GuitarTab objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class GuitarTabsRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?GuitarTabs
+    //    public function findOneBySomeField($value): ?GuitarTab
     //    {
     //        return $this->createQueryBuilder('g')
     //            ->andWhere('g.exampleField = :val')
