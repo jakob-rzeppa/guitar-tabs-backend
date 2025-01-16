@@ -1,0 +1,256 @@
+FORMAT: 1A
+HOST: https://localhost:3060
+
+# guitartabs
+
+A API for managing guitar chord sheets. 
+It can transpose chords and display the most important information of a song.
+
+# Group Users
+
+## Authentication [/auth]
+
+### Login [POST /auth/login]
+
++ Request (application/json)
+
+        {
+            "email": "example@example.com",
+            "password": "examplePassword"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "access_token": "",
+            "refresh_token": ""
+        }
+
+### Refresh Token [PUT /auth/refresh-token]
+
++ Request (application/json)
+
+        {
+            "refresh_token": "",
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "access_token": "",
+        }
+
+### Logout [DELETE /auth/logout]
+
++ Request (application/json)
+
+        {
+            "refresh_token": "",
+        }
+
++ Response 201
+
+## Users [/auth/users]
+
+### GET user information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "name": "Peter",
+            "email": "peter@example.com",
+            "role": "user"
+        }
+
+### Register [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Peter",
+            "email": "peter@example.com",
+            "password": "examplePassword"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "access_token": "",
+            "refresh_token": ""
+        }
+        
+### UPDATE user information [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "Peter",
+            "email": "peter@example.com",
+            "password": "password"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "name": "Peter",
+            "email": "peter@example.com",
+            "role": "user"
+        }
+        
+### DELETE user [DELETE]
+
++ Response 201
+
+# Group Guitar Tabs
+
+## General Endpoints [/guitar-tabs]
+
+### GET Information of all Tabs [GET]
+
++ Response 200 (application/json)
+
+        {
+            "tabs": [
+                {
+                    "id": "67457974c101e604fda43c64"
+                    "user_id": "67457995b91df366534054d4"
+                    "name": "Perfect",
+                    "artist": "Ed Sheeran",
+                    "capo": 1,
+                    "uploaded_at": "2024-08-05T08:40:51.620Z",
+                },
+                {
+                    "id": "674579ad64067d72e4cdde9e"
+                    "user_id": "67457995b91df366534054d4"
+                    "name": "Memories",
+                    "artist": "Dean Lewis",
+                    "capo": 7,
+                    "uploaded_at": "2023-08-05T08:40:51.620Z",
+                },
+                {
+                    "id": "674579b33d100f6f68ab31e1"
+                    "user_id": "67457995b91df366534054d4"
+                    "name": "Take Me Home Country Roads",
+                    "artist": "John Denver",
+                    "capo": 2,
+                    "uploaded_at": "2022-08-05T08:40:51.620Z",
+                }
+            ]
+        }
+        
+
+### GET a Tab [GET /guitar-tabs/{id}]
+
++ Parameter 
+
+    + id: "674579b33d100f6f68ab31e1" (string) - an unique identifier of the tab
+
++ Response 200 (application/json)
+
+        {
+            "id": "67457974c101e604fda43c64"
+            "user_id": "67457995b91df366534054d4"
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "key": "Ab"
+            "capo": 1,
+            "uploaded_at": "2024-08-05T08:40:51.620Z",
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+        
+### CREATE a New Tab [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "capo": 1,
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "id": "67457974c101e604fda43c64"
+            "user_id": "67457995b91df366534054d4"
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "key": "Ab"
+            "capo": 1,
+            "uploaded_at": "2024-08-05T08:40:51.620Z",
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+            
+### UPDATE a Tab [PUT /guitar-tabs/{id}]
+
++ Parameter 
+
+    + id: "674579b33d100f6f68ab31e1" (string) - an unique identifier of the tab
+
++ Request (application/json)
+
+        {
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "key": "Ab"
+            "capo": 1,
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": "67457974c101e604fda43c64"
+            "user_id": "67457995b91df366534054d4"
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "key": "Ab"
+            "capo": 1,
+            "uploaded_at": "2024-08-05T08:40:51.620Z",
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+
+### DELETE a Tab [DELETE /guitar-tabs/{id}]
+
++ Parameter 
+
+    + id: "674579b33d100f6f68ab31e1" (string) - an unique identifier of the tab
+
++ Response 201 (application/json)
+
+## Transpose Tabs [/guitar-tabs/{id}/transpose/{steps}]
+
++ Parameter 
+
+    + id: "674579b33d100f6f68ab31e1" (string) - an unique identifier of the tab
+    
++ Parameter 
+
+    + steps: 2 (number) - the number of steps to transpose
+
+### TRANSPOSE a Tab [GET]
+
++ Response 200 (application/json)
+
+        {
+            "key": "Ab",
+            "capo": 1,
+            "tab": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
+
+### TRANSPOSE and UPDATE a Tab [PUT]
+
+
++ Response 200 (application/json)
+
+        {
+            "id": "67457974c101e604fda43c64"
+            "user_id": "67457995b91df366534054d4"
+            "name": "Perfect",
+            "artist": "Ed Sheeran",
+            "key": "Ab"
+            "capo": 1,
+            "uploaded_at": "2024-08-05T08:40:51.620Z",
+            "content": "[Verse 1]\n\n          G        Em\n\nI found a love for me\n\n              C                            D\n\nDarling, just dive right in, and follow my lead\n\n                G          Em\n\nWell, I found a girl beautiful and sweet\n\n        C                                     D\n\nI never knew you were the someone waiting for me"
+        }
