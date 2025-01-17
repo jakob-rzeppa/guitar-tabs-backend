@@ -13,8 +13,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class GuitarTabsController extends AbstractController
 {
-    #[Route('/guitar_tabs', name: 'app_guitar_tabs_read_all', methods: ['GET'])]
-    public function readAll(GuitarTabRepository $guitarTabRepository): JsonResponse
+    #[Route('/guitar_tabs', name: 'app_guitar_tabs_get_all', methods: ['GET'])]
+    public function getAll(GuitarTabRepository $guitarTabRepository): JsonResponse
     {
         $guitarTabs = $guitarTabRepository->findAll();
 
@@ -28,8 +28,8 @@ final class GuitarTabsController extends AbstractController
         ]);
     }
 
-    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tab_read', methods: ['GET'])]
-    public function read(int $id, GuitarTabRepository $guitarTabRepository): JsonResponse
+    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tab_get', methods: ['GET'])]
+    public function get(int $id, GuitarTabRepository $guitarTabRepository): JsonResponse
     {
         $guitarTab = $guitarTabRepository->find($id);
 
@@ -43,8 +43,8 @@ final class GuitarTabsController extends AbstractController
         ]);
     }
 
-    #[Route('/guitar_tabs', name: 'app_guitar_tabs_create', methods: ['POST'])]
-    public function create(Request $request, EntityManagerInterface $entityManagerInterface): JsonResponse
+    #[Route('/guitar_tabs', name: 'app_guitar_tabs_post', methods: ['POST'])]
+    public function post(Request $request, EntityManagerInterface $entityManagerInterface): JsonResponse
     {
         $body = $request->toArray();
 
@@ -63,8 +63,8 @@ final class GuitarTabsController extends AbstractController
         ], 201);
     }
 
-    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tabs_update', methods: ['PUT'])]
-    public function update(int $id, Request $request, GuitarTabRepository $guitarTabRepository, EntityManagerInterface $entityManagerInterface): Response
+    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tabs_put', methods: ['PUT'])]
+    public function put(int $id, Request $request, GuitarTabRepository $guitarTabRepository, EntityManagerInterface $entityManagerInterface): Response
     {
         $body = $request->toArray();
 
