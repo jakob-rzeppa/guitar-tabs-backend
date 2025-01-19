@@ -20,7 +20,7 @@ final class GuitarTabsControllerTest extends WebTestCase
         ];
 
         $client = static::createClient();
-        $client->request('GET', '/guitar_tabs');
+        $client->request('GET', '/guitar-tabs');
 
         self::assertResponseIsSuccessful();
         self::assertJson($client->getResponse()->getContent());
@@ -39,7 +39,7 @@ final class GuitarTabsControllerTest extends WebTestCase
         ];
 
         $client = static::createClient();
-        $client->request('GET', '/guitar_tabs/1');
+        $client->request('GET', '/guitar-tabs/1');
 
         self::assertResponseIsSuccessful();
         self::assertJson($client->getResponse()->getContent());
@@ -53,7 +53,7 @@ final class GuitarTabsControllerTest extends WebTestCase
         ];
 
         $client = static::createClient();
-        $client->request('POST', '/guitar_tabs', [], [], [], json_encode([
+        $client->request('POST', '/guitar-tabs', [], [], [], json_encode([
             'name' => 'Hotel California',
             'artist' => 'Eagles',
             'capo' => 7,
@@ -69,7 +69,7 @@ final class GuitarTabsControllerTest extends WebTestCase
     public function testUpdate(): void
     {
         $client = static::createClient();
-        $client->request('PUT', '/guitar_tabs/1', [], [], [], json_encode([
+        $client->request('PUT', '/guitar-tabs/1', [], [], [], json_encode([
             'name' => 'new',
             'artist' => 'new',
             'capo' => 8,
@@ -82,7 +82,7 @@ final class GuitarTabsControllerTest extends WebTestCase
     public function testUpdateNotFound(): void
     {
         $client = static::createClient();
-        $client->request('PUT', '/guitar_tabs/100', [], [], [], json_encode([
+        $client->request('PUT', '/guitar-tabs/100', [], [], [], json_encode([
             'name' => 'new',
             'artist' => 'new',
             'capo' => 8,
@@ -95,7 +95,7 @@ final class GuitarTabsControllerTest extends WebTestCase
     public function testDelete(): void
     {
         $client = static::createClient();
-        $client->request('DELETE', '/guitar_tabs/1');
+        $client->request('DELETE', '/guitar-tabs/1');
 
         self::assertResponseStatusCodeSame(204, $client->getResponse()->getStatusCode());
     }
@@ -103,7 +103,7 @@ final class GuitarTabsControllerTest extends WebTestCase
     public function testDeleteNotFound(): void
     {
         $client = static::createClient();
-        $client->request('DELETE', '/guitar_tabs/100');
+        $client->request('DELETE', '/guitar-tabs/100');
 
         self::assertResponseStatusCodeSame(404, $client->getResponse()->getStatusCode());
     }

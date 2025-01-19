@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class GuitarTabsController extends AbstractController
 {
-    #[Route('/guitar_tabs', name: 'app_guitar_tabs_get_all', methods: ['GET'])]
+    #[Route('/guitar-tabs', name: 'app_guitar_tabs_get_all', methods: ['GET'])]
     public function getAll(GuitarTabRepository $guitarTabRepository): JsonResponse
     {
         $guitarTabs = $guitarTabRepository->findAll();
@@ -28,7 +28,7 @@ final class GuitarTabsController extends AbstractController
         ]);
     }
 
-    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tab_get', methods: ['GET'])]
+    #[Route('/guitar-tabs/{id}', name: 'app_guitar_tab_get', methods: ['GET'])]
     public function get(int $id, GuitarTabRepository $guitarTabRepository): JsonResponse
     {
         $guitarTab = $guitarTabRepository->find($id);
@@ -43,7 +43,7 @@ final class GuitarTabsController extends AbstractController
         ]);
     }
 
-    #[Route('/guitar_tabs', name: 'app_guitar_tabs_post', methods: ['POST'])]
+    #[Route('/guitar-tabs', name: 'app_guitar_tabs_post', methods: ['POST'])]
     public function post(Request $request, EntityManagerInterface $entityManagerInterface): JsonResponse
     {
         $body = $request->toArray();
@@ -63,7 +63,7 @@ final class GuitarTabsController extends AbstractController
         ], 201);
     }
 
-    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tabs_put', methods: ['PUT'])]
+    #[Route('/guitar-tabs/{id}', name: 'app_guitar_tabs_put', methods: ['PUT'])]
     public function put(int $id, Request $request, GuitarTabRepository $guitarTabRepository, EntityManagerInterface $entityManagerInterface): Response
     {
         $body = $request->toArray();
@@ -85,7 +85,7 @@ final class GuitarTabsController extends AbstractController
         return new Response('', 204);
     }
 
-    #[Route('/guitar_tabs/{id}', name: 'app_guitar_tabs_delete', methods: ['DELETE'])]
+    #[Route('/guitar-tabs/{id}', name: 'app_guitar_tabs_delete', methods: ['DELETE'])]
     public function delete(int $id, GuitarTabRepository $guitarTabRepository, EntityManagerInterface $entityManagerInterface): Response
     {
         $guitarTab = $guitarTabRepository->find($id);
